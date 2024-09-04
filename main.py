@@ -1,15 +1,17 @@
 import os
 import subprocess
 import argparse
-import ast
-from typing import Tuple, List, Union 
+from typing import List, Union 
 
 
 executed_commands = set()
 test_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test", "test_main.py")
 files_to_exclude = map(os.path.abspath, [__file__, test_path])
 
-def get_sorted_files(directory):
+def get_sorted_files(directory) -> List[str]:
+    if not os.path.isdir(directory):
+        raise ValueError(f"Путь '{directory}' не существует")
+
     file_paths = []
     for root, _, files in os.walk(directory):
         for file in files:
