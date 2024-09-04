@@ -9,9 +9,6 @@ test_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test", "te
 files_to_exclude = map(os.path.abspath, [__file__, test_path])
 
 def get_sorted_files(directory) -> List[str]:
-    if not os.path.isdir(directory):
-        raise ValueError(f"Путь '{directory}' не существует")
-
     file_paths = []
     for root, _, files in os.walk(directory):
         for file in files:
